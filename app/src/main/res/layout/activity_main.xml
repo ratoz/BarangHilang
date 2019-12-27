@@ -1,84 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txt_juduldepan"
-        android:layout_width="142dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="108dp"
-        android:text="@string/txt_jdldepan"
-        android:textAlignment="center"
-        android:textSize="@dimen/heading1"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/box_Name"
-        android:layout_width="wrap_content"
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="textPersonName"
-        android:labelFor="@id/box_Name"
-        android:text="@string/txt_boxusername"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_juduldepan" />
+        android:background="@drawable/gradient"
+        android:orientation="vertical"
+        android:paddingBottom="170dp">
 
-    <EditText
-        android:id="@+id/box_Password"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/txt_juduldepan1a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/rapiatas1"
+            android:text="@string/txt_jdldepan1a"
+            android:textAlignment="center"
+            android:textSize="@dimen/heading1"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            />
+        <TextView
+            android:id="@+id/txt_juduldepan1b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_jdldepan1b"
+            android:textAlignment="center"
+            android:textSize="@dimen/heading1"
+            android:textStyle="bold"
+            android:textColor="@color/colorWhite"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:importantForAutofill="no"
-        android:inputType="textPassword"
-        android:labelFor="@id/box_Password"
-        android:text="@string/txt_boxpassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/box_Name" />
+        android:background="@drawable/gradient2"
+        android:paddingLeft="@dimen/rapisisi1"
+        android:paddingRight="@dimen/rapisisi1"
+        android:paddingBottom="200dp"
+        android:orientation="vertical"
+        >
 
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="242dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="24dp"
 
-        android:text="@string/txt_loginbutton"
-        app:layout_constraintBottom_toTopOf="@+id/btn_send"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="242dp"
-        android:layout_height="54dp"
-        android:layout_marginBottom="160dp"
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txt_boxusername"
+                android:id="@+id/txtbox_username"
+                android:layout_marginBottom="30dp"
+                android:inputType="textPersonName"/>
+            <EditText
+                android:inputType="textPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txt_boxpassword"
+                android:id="@+id/txtbox_password"/>
 
-        android:text="@string/txt_sendbutton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/box_Password" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/loginclick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txt_loginbutton"
+            android:background="@color/colorSecondary"
+            android:textColor="@color/colorWhite"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>
+
+</ScrollView>

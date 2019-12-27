@@ -1,13 +1,15 @@
 <resources>
     <string name="app_name">Barang Hilang</string>
 
-    <string name="txt_boxusername">Username</string>
-    <string name="txt_boxpassword">Password</string>
-    <string name="txt_jdldepan">Judul ya</string>
+    <!-- Text -->
+    <string name="txt_jdldepan1a">Masuk</string>
+    <string name="txt_jdldepan1b">Lo&amp;fo Amikom</string>
+
+    <!-- Button -->
     <string name="txt_loginbutton">Login</string>
     <string name="txt_sendbutton">Send</string>
 
-    <dimen name="heading1">30sp</dimen>
-    <dimen name="heading2">20sp</dimen>
-    <dimen name="text">15sp</dimen>
+    <!-- Textbox -->
+    <string name="txt_boxusername">Username</string>
+    <string name="txt_boxpassword">Password</string>
 </resources>
