@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/BarangHilang"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="BarangHilang" />
+
+    <item android:id="@+id/BarangKetemu"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="BarangKetemu" />
+
+    <item android:id="@+id/PostBarang"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="PostingBarang" />
+
+    <item android:id="@+id/AkunFrag"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Akun" />
+
+</menu>
