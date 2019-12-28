@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Button login = findViewById(R.id.loginclick);
         final EditText username = findViewById(R.id.txtbox_username);
@@ -69,12 +72,9 @@ public class MainActivity extends AppCompatActivity {
                                 String pass = document.get("password").toString();
                                 String passtxtbox = password.getText().toString();
                                 if(pass.equals(passtxtbox)){
-                                    Context context = getApplicationContext();
-                                    CharSequence text = "Login Berhasil";
-                                    int duration = Toast.LENGTH_SHORT;
+                                    Intent dashboard = new Intent(MainActivity.this, halamanDefault.class);
+                                    startActivity(dashboard);
 
-                                    Toast toast = Toast.makeText(context, text, duration);
-                                    toast.show();
                                 }
                                 else{
                                      validatefail = false;
