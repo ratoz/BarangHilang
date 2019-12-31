@@ -1,18 +1,22 @@
 package Model;
 
+import android.graphics.Bitmap;
+
 import java.util.Date;
 
 public class PostData {
     private String idUser;
     private String title;
+    private String description;
     private String chronology;
-    private String photo;
+    private Bitmap photo;
     private String dateLost;
     private String typePost;
     private String datePost;
 
-    public PostData(String idUser, String title, String chronology, String photo, String dateLost, String typePost, String datePost) {
+    public PostData(String idUser, String title, String chronology,String description, Bitmap photo, String dateLost, String typePost, String datePost) {
         this.idUser = idUser;
+        this.description=description;
         this.title = title;
         this.chronology = chronology;
         this.photo = photo;
@@ -33,12 +37,16 @@ public class PostData {
         this.chronology = chronology;
     }
 
-    public void setPhoto(String photo) {
+    public void setPhoto(Bitmap photo) {
         this.photo = photo;
     }
 
     public void setDateLost(String dateLost) {
         this.dateLost = dateLost;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setTypePost(String typePost) {
