@@ -9,12 +9,12 @@ public class PostData {
     private String title;
     private String description;
     private String chronology;
-    private Bitmap photo;
+    private String photo;
     private String dateLost;
     private String typePost;
     private String datePost;
 
-    public PostData(String idUser, String title, String chronology,String description, Bitmap photo, String dateLost, String typePost, String datePost) {
+    public PostData(String idUser, String title, String chronology,String description, String photo, String dateLost, String typePost, String datePost) {
         this.idUser = idUser;
         this.description = description;
         this.title = title;
@@ -37,7 +37,7 @@ public class PostData {
         this.chronology = chronology;
     }
 
-    public void setPhoto(Bitmap photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 
