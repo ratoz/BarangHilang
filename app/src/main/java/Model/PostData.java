@@ -16,7 +16,7 @@ public class PostData {
 
     public PostData(String idUser, String title, String chronology,String description, Bitmap photo, String dateLost, String typePost, String datePost) {
         this.idUser = idUser;
-        this.description=description;
+        this.description = description;
         this.title = title;
         this.chronology = chronology;
         this.photo = photo;

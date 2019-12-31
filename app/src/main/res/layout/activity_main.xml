@@ -94,6 +94,14 @@
                 />
             </LinearLayout>
 
+        <Button
+            android:id="@+id/loginclick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:text="@string/txt_loginbutton"
+            android:textColor="@color/colorWhite" />
+
 
     </LinearLayout>
 
@@ -102,16 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
-        <Button
-            android:id="@+id/loginclick"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_loginbutton"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/button"
-            />
-    </LinearLayout>
+        ></LinearLayout>
 </LinearLayout>
 
 </LinearLayout>
