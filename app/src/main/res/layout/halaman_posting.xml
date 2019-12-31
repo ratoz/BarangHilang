@@ -96,7 +96,7 @@
                 android:paddingVertical="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Jenis Post"
                     android:layout_gravity="center_vertical"
@@ -139,14 +139,14 @@
 
                 <TextView
                     android:id="@+id/tvDateFoundLostToggle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:text="Tanggal Hilang"
                     android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:id="@+id/tvDateFoundLost"
-                    android:layout_width="wrap_content"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="16dp"
@@ -158,6 +158,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_calender"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/colorPrimaryLight"
+                    android:padding="4dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="16dp">
+
+                <TextView
+                    android:id="@+id/tvTimeFoundLostToggle"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="Waktu"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/tvTimeFoundLost"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="14:45 WIB"/>
+
+
+                <ImageView
+                    android:id="@+id/btnTimeFoundLost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_clock"
                     android:layout_marginHorizontal="16dp"
                     android:background="@color/colorPrimaryLight"
                     android:padding="4dp"/>

@@ -22,45 +22,45 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pamair.baranghilang.references.DatePickerFragment;
+import com.pamair.baranghilang.references.TimePickerFragment;
 
 import java.io.InputStream;
 import java.util.Calendar;
 
 public class halamanPosting extends Fragment {
+
+    /*Declare Variable*/
     private View postView;
     private TextView tvDateFoundLost;
-    private TextView calendar;
-    private RadioButton radioButton;
-    private EditText edtTitle;
-    private EditText edtDescription;
-    private EditText edtChronology;
+    private TextView tvTimeFoundLost;
+    private TextView calendar,clock;
+    private EditText edtTitle,edtDescription,edtChronology;
     private Button btnUploadImage;
     private ImageView imgPreview;
     private RadioGroup rdgPost;
     private RadioButton rdbFound;
     private RadioButton rdbLost;
     private ImageView btnCalendar;
+    private ImageView btnClock;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
 
-    //private Uri imgPath;
-    //private  final int PICK_IMAGE_REQUEST = 22;
-
-    //FirebaseStorage storage;
-    //StorageReference storageReference;
-
+    /*Constructor*/
     public halamanPosting(){
 
     }
 
+    /*Initialitation Variable*/
     public void init() {
         edtTitle =  postView.findViewById(R.id.edtTitle);
         edtDescription = postView.findViewById(R.id.edtDescription);
@@ -68,12 +68,12 @@ public class halamanPosting extends Fragment {
         btnUploadImage = postView.findViewById(R.id.btnChooseImage);
         imgPreview = postView.findViewById(R.id.imgPreview);
         tvDateFoundLost = postView.findViewById(R.id.tvDateFoundLostToggle);
+        tvTimeFoundLost = postView.findViewById(R.id.tvTimeFoundLost);
         rdgPost = postView.findViewById(R.id.rdgPost);
         btnCalendar = postView.findViewById(R.id.btnDateFoundLost);
+        btnClock = postView.findViewById(R.id.btnTimeFoundLost);
         calendar = postView.findViewById(R.id.tvDateFoundLost);
-
-        //storage = FirebaseStorage.getInstance();
-        //storageReference = storage.getReference();
+        clock = postView.findViewById(R.id.tvTimeFoundLost);
     }
 
     @Override
@@ -81,13 +81,31 @@ public class halamanPosting extends Fragment {
                              Bundle savedInstanceState) {
         postView = inflater.inflate(R.layout.halaman_posting, container, false);
         // Inflate the layout for this fragment
-        init();
-        onSelectedPostType();
-        onSelectedDateTime();
+
         return postView;
     }
 
-    private void onSelectedDateTime() {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init();
+        onSelectedPostType();
+        onSelectedDate();
+        onSelectedTime();
+    }
+
+    private void onSelectedTime() {
+        btnClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment newFragment = new TimePickerFragment();
+                newFragment.show(getChildFragmentManager(),"Clock");
+            }
+        });
+
+    }
+
+    private void onSelectedDate() {
         btnCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +149,6 @@ public class halamanPosting extends Fragment {
         String month;
         public void onDateSet(DatePicker view, int year, int monthOfYear,
                               int dayOfMonth) {
-
             monthOfYear++;
             switch(monthOfYear){
                 case 1:
