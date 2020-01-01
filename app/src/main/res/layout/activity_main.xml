@@ -1,117 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+    android:background="@drawable/gradient2"
     tools:context=".MainActivity">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    <TextView
+        android:layout_marginTop="@dimen/rapiatas1"
+        android:id="@+id/txt_juduldepan1a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_jdldepan1a"
+        android:textAlignment="center"
+        android:textSize="@dimen/heading1"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        />
+
+    <TextView
+        android:layout_below="@id/txt_juduldepan1a"
+        android:id="@+id/txt_juduldepan1b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_jdldepan1b"
+        android:textAlignment="center"
+        android:textSize="@dimen/heading1"
+        android:textStyle="bold"
+        android:textColor="@color/colorWhite"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient"
         android:orientation="vertical"
-        android:paddingBottom="170dp">
-
-        <TextView
-            android:id="@+id/txt_juduldepan1a"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/rapiatas1"
-            android:text="@string/txt_jdldepan1a"
-            android:textAlignment="center"
-            android:textSize="@dimen/heading1"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"
-            />
-        <TextView
-            android:id="@+id/txt_juduldepan1b"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_jdldepan1b"
-            android:textAlignment="center"
-            android:textSize="@dimen/heading1"
-            android:textStyle="bold"
-            android:textColor="@color/colorWhite"
-            />
-
-    </LinearLayout>
-
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/gradient2"
-        android:paddingLeft="@dimen/rapisisi1"
         android:paddingRight="@dimen/rapisisi1"
-        android:paddingBottom="100dp"
-        android:orientation="vertical"
+        android:paddingLeft="@dimen/rapisisi1"
+        android:layout_above="@id/layout_warning"
+        android:layout_marginBottom="50dp"
         >
 
-
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/txt_boxusername"
-                android:id="@+id/txtbox_username"
-                android:layout_marginBottom="30dp"
-                android:inputType="textPersonName"/>
-            <EditText
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/txt_boxpassword"
-                android:id="@+id/txtbox_password"/>
-            <LinearLayout
-                android:id="@+id/popup_warning"
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                >
-                <ImageView
-                    android:id="@+id/warningicon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"/>
-
-                <TextView
-                    android:id="@+id/warningtext"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text=""
-                    android:textColor="@color/colorAccent"
-                    android:layout_marginTop="10dp"
-                />
-            </LinearLayout>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-        <Button
-            android:id="@+id/loginclick"
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txt_loginbutton"
-            android:textColor="@color/colorWhite"
-            android:background="@drawable/button"
-            />
-    </LinearLayout>
-</LinearLayout>
+            android:hint="@string/txt_boxusername"
+            android:id="@+id/txtbox_username"
+            android:layout_marginBottom="30dp"
+            android:inputType="textPersonName"/>
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/txt_boxpassword"
+            android:id="@+id/txtbox_password"/>
 
-</LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/layout_warning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@id/loginclick"
+        android:layout_marginBottom="200dp">
+    <ImageView
+
+        android:id="@+id/warningicon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"/>
+    <TextView
+        android:id="@+id/warningtext"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/colorAccent"
+        android:textAlignment="center"
+
+        />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/loginclick"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_loginbutton"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button"
+
+        />
+
+    <RelativeLayout
+        android:id="@+id/windowprogress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackTrans"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>
