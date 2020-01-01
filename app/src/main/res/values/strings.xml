@@ -12,4 +12,5 @@
     <!-- Textbox -->
     <string name="txt_boxusername">Username</string>
     <string name="txt_boxpassword">Password</string>
+    <string name="txt_warninglogin1">Username or Password not correct!</string>
 </resources>

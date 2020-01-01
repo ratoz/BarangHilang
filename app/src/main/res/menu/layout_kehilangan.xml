@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/BarangHilang"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="BarangHilang" />
+        android:icon="@drawable/fragfound"
+        android:title="Barang Hilang" />
 
     <item android:id="@+id/BarangKetemu"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="BarangKetemu" />
+        android:icon="@drawable/fraglost"
+        android:title="Barang Ketemu" />
 
     <item android:id="@+id/PostBarang"
-        android:icon="@drawable/ic_launcher_background"
-        android:title="PostingBarang" />
+        android:icon="@drawable/fragpost"
+        android:title="Buat Post" />
 
     <item android:id="@+id/AkunFrag"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/fragprofile"
         android:title="Akun" />
 
 </menu>

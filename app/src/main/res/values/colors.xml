@@ -12,4 +12,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
+    <color name="colorBlackTrans">#CC000000</color>
+
 </resources>
