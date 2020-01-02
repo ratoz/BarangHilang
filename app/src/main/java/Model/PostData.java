@@ -20,9 +20,8 @@ public class PostData {
     private int dateYearPost;
     private int timeHourPost;
     private int timeMinutePost;
-    private String typePost;
-    private String datePost;
-
+    private String dateTimePost;
+    private String typePost = "Found";
 
     public PostData() {}
 
@@ -76,6 +75,34 @@ public class PostData {
         return timeMinuteLost;
     }
 
+    public int getDateDayPost() {
+        return dateDayPost;
+    }
+
+    public int getDateMonthPost() {
+        return dateMonthPost;
+    }
+
+    public int getDateYearPost() {
+        return dateYearPost;
+    }
+
+    public int getTimeHourPost() {
+        return timeHourPost;
+    }
+
+    public int getTimeMinutePost() {
+        return timeMinutePost;
+    }
+
+    public String getDateTimePost() {
+        return dateTimePost;
+    }
+
+    public void setDateTimePost(String dateTimePost) {
+        this.dateTimePost = dateTimePost;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -116,31 +143,4 @@ public class PostData {
         this.typePost = typePost;
     }
 
-    public String getDatePost() {
-        return datePost;
-    }
-
-    public void setDatePost(String datePost) {
-        this.datePost = datePost;
-    }
-
-    public int getDateDayPost() {
-        return dateDayPost;
-    }
-
-    public int getDateMonthPost() {
-        return dateMonthPost;
-    }
-
-    public int getDateYearPost() {
-        return dateYearPost;
-    }
-
-    public int getTimeHourPost() {
-        return timeHourPost;
-    }
-
-    public int getTimeMinutePost() {
-        return timeMinutePost;
-    }
 }

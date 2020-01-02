@@ -23,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,10 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pamair.baranghilang.references.DatePickerFragment;
@@ -38,6 +43,7 @@ import com.pamair.baranghilang.references.TimePickerFragment;
 
 import java.io.InputStream;
 import java.util.Calendar;
+import java.util.Date;
 
 import Model.PostData;
 
@@ -50,6 +56,7 @@ public class halamanPosting extends Fragment {
     private TextView calendar,clock;
     private EditText edtTitle,edtDescription,edtChronology;
     private Button btnUploadImage;
+    private Button btnPost;
     private ImageView imgPreview;
     private RadioGroup rdgPost;
     private RadioButton rdbFound;
@@ -59,6 +66,7 @@ public class halamanPosting extends Fragment {
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
     private PostData post;
+    FirebaseFirestore db;
 
     /*Constructor*/
     public halamanPosting(){
@@ -71,6 +79,7 @@ public class halamanPosting extends Fragment {
         edtDescription = postView.findViewById(R.id.edtDescription);
         edtChronology = postView.findViewById(R.id.edtChronology);
         btnUploadImage = postView.findViewById(R.id.btnChooseImage);
+        btnPost = postView.findViewById(R.id.btnPost);
         imgPreview = postView.findViewById(R.id.imgPreview);
         tvDateFoundLost = postView.findViewById(R.id.tvDateFoundLostToggle);
         tvTimeFoundLost = postView.findViewById(R.id.tvTimeFoundLost);
@@ -79,6 +88,8 @@ public class halamanPosting extends Fragment {
         btnClock = postView.findViewById(R.id.btnTimeFoundLost);
         calendar = postView.findViewById(R.id.tvDateFoundLost);
         clock = postView.findViewById(R.id.tvTimeFoundLost);
+        post = new PostData();
+        db = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -97,7 +108,47 @@ public class halamanPosting extends Fragment {
         onSelectedPostType();
         onSelectedDate();
         onSelectedTime();
-        tvDateFoundLost.setText(getArguments().getString("user"));
+        getDateTimeNow();
+        onPostEntry();
+        //tvDateFoundLost.setText(getArguments().getString("user"));
+    }
+
+    private void onPostEntry() {
+        btnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                post.setIdUser(getArguments().getString("user"));
+                post.setTitle(edtTitle.getText().toString());
+                post.setDescription(edtDescription.getText().toString());
+                post.setChronology(edtChronology.getText().toString());
+                post.setPhoto("image/..."); //Sementara
+
+                CollectionReference newPost = db.collection("post");
+
+                newPost.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Toast toast = Toast.makeText(getActivity(),"Post Created",Toast.LENGTH_SHORT);
+                    }
+                });
+            }
+        });
+    }
+
+    private void getDateTimeNow() {
+        Calendar now = Calendar.getInstance();
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        int minute = now.get(Calendar.MINUTE);
+        int day = now.get(Calendar.DAY_OF_MONTH);
+        int month = now.get(Calendar.MONTH)+1;
+        int year = now.get(Calendar.YEAR);
+        String datetime = Integer.toString(year)+Integer.toString(month)
+                +Integer.toString(day)+Integer.toString(hour)
+                +Integer.toString(minute);
+
+        post.setTimePost(hour,minute);
+        post.setDatePost(day,month,year);
+        post.setDateTimePost(datetime); //For Sorting In Firestore
     }
 
     private void onSelectedDate() {
@@ -153,9 +204,11 @@ public class halamanPosting extends Fragment {
                 switch(checkedId){
                     case R.id.rdbFound:
                         tvDateFoundLost.setText("Tanggal Ditemukan");
+                        post.setTypePost("Found");
                         break;
                     case R.id.rdbLost:
                         tvDateFoundLost.setText("Tanggal Kehilangan");
+                        post.setTypePost("Lost");
                         break;
                 }
             }
@@ -205,6 +258,7 @@ public class halamanPosting extends Fragment {
                     month = "Desember";
                     break;
             }
+            post.setDateLost(dayOfMonth,monthOfYear,year);
             calendar.setText(dayOfMonth + " " + month + " " + year);
         }
     };
@@ -215,6 +269,7 @@ public class halamanPosting extends Fragment {
             String hour = Integer.toString(hourOfDay);
             String minute = Integer.toString(minuteOfHour);
 
+            post.setTimeLost(hourOfDay,minuteOfHour);
             tvTimeFoundLost.setText(hour+":"+minute);
         }
     };
