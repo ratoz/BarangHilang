@@ -15,18 +15,35 @@ public class PostData {
     private int dateYearLost;
     private int timeHourLost;
     private int timeMinuteLost;
+    private int dateDayPost;
+    private int dateMonthPost;
+    private int dateYearPost;
+    private int timeHourPost;
+    private int timeMinutePost;
     private String typePost;
     private String datePost;
 
+
     public PostData() {}
 
-    public void setDate(int day,int month, int year){
+    public void setDatePost(int day,int month, int year){
+        this.dateDayPost=day;
+        this.dateMonthPost=month;
+        this.dateYearPost=year;
+    }
+
+    public void setDateLost(int day,int month, int year){
         this.dateDayLost=day;
         this.dateMonthLost=month;
         this.dateYearLost=year;
     }
 
-    public void setTime(int hour, int minute){
+    public void setTimePost(int hour, int minute){
+        this.timeHourPost = hour;
+        this.timeMinutePost = minute;
+    }
+
+    public void setTimeLost(int hour, int minute){
         this.timeHourLost = hour;
         this.timeMinuteLost = minute;
     }
@@ -105,5 +122,25 @@ public class PostData {
 
     public void setDatePost(String datePost) {
         this.datePost = datePost;
+    }
+
+    public int getDateDayPost() {
+        return dateDayPost;
+    }
+
+    public int getDateMonthPost() {
+        return dateMonthPost;
+    }
+
+    public int getDateYearPost() {
+        return dateYearPost;
+    }
+
+    public int getTimeHourPost() {
+        return timeHourPost;
+    }
+
+    public int getTimeMinutePost() {
+        return timeMinutePost;
     }
 }

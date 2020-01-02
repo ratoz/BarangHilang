@@ -3,6 +3,7 @@ package com.pamair.baranghilang;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +38,8 @@ import com.pamair.baranghilang.references.TimePickerFragment;
 
 import java.io.InputStream;
 import java.util.Calendar;
+
+import Model.PostData;
 
 public class halamanPosting extends Fragment {
 
@@ -54,6 +58,7 @@ public class halamanPosting extends Fragment {
     private ImageView btnClock;
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
+    private PostData post;
 
     /*Constructor*/
     public halamanPosting(){
@@ -92,17 +97,7 @@ public class halamanPosting extends Fragment {
         onSelectedPostType();
         onSelectedDate();
         onSelectedTime();
-    }
-
-    private void onSelectedTime() {
-        btnClock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment newFragment = new TimePickerFragment();
-                newFragment.show(getChildFragmentManager(),"Clock");
-            }
-        });
-
+        tvDateFoundLost.setText(getArguments().getString("user"));
     }
 
     private void onSelectedDate() {
@@ -128,6 +123,28 @@ public class halamanPosting extends Fragment {
         });
     }
 
+    private void onSelectedTime() {
+        btnClock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TimePickerFragment time = new TimePickerFragment();
+                /**
+                 * Set Up Current Date Into dialog
+                 */
+                Calendar calender = Calendar.getInstance();
+                Bundle argsT = new Bundle();
+                argsT.putInt("hour", calender.get(Calendar.HOUR_OF_DAY));
+                argsT.putInt("minute", calender.get(Calendar.MINUTE));
+
+                time.setArguments(argsT);
+                /**
+                 * Set Call back to capture selected date
+                 */
+                time.setCallBack(ontime);
+                time.show(getFragmentManager(), "Time Picker");
+            }
+        });
+    }
 
     public void onSelectedPostType(){
         rdgPost.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -189,6 +206,16 @@ public class halamanPosting extends Fragment {
                     break;
             }
             calendar.setText(dayOfMonth + " " + month + " " + year);
+        }
+    };
+
+    TimePickerDialog.OnTimeSetListener ontime = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minuteOfHour) {
+            String hour = Integer.toString(hourOfDay);
+            String minute = Integer.toString(minuteOfHour);
+
+            tvTimeFoundLost.setText(hour+":"+minute);
         }
     };
 }

@@ -81,7 +81,10 @@ public class MainActivity extends AppCompatActivity {
                                 String passtxtbox = password.getText().toString();
                                 if(pass.equals(passtxtbox)){
                                     DissapearProgress(login,windowprogress);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("userId",username.getText().toString());
                                     Intent dashboard = new Intent(MainActivity.this, halamanDefault.class);
+                                    dashboard.putExtras(bundle);
                                     startActivity(dashboard);
 
                                 }

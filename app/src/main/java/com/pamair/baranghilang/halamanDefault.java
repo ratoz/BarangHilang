@@ -31,6 +31,13 @@ public class halamanDefault extends AppCompatActivity {
         halKehilangan = new halamanKehilangan();
         botNav = findViewById(R.id.bnvMain);
 
+        /*Get userId From Login*/
+        Bundle bundle = getIntent().getExtras();
+        Bundle fragment = new Bundle();
+        fragment.putString("user",bundle.getString("userId"));
+        halPosting.setArguments(fragment);
+        /*------------------------*/
+
         changeFragment(halKehilangan);
 
         botNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
