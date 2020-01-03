@@ -23,7 +23,14 @@ public class PostData {
     private String dateTimePost;
     private String typePost = "Found";
 
-    public PostData() {}
+
+    public PostData(){}
+
+    public PostData(String title, String description,String chronology) {
+        this.title = title;
+        this.description = description;
+        this.chronology = chronology;
+    }
 
     public void setDatePost(int day,int month, int year){
         this.dateDayPost=day;
