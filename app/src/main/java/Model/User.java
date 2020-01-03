@@ -1,31 +1,42 @@
 package Model;
 
 public class User {
-    private String username;
-    private String password;
-   // private String Phone;
+    private String name;
+    private String prodi;
+    private String tahunmasuk;
+    // private String Phone;
+
 
     public User() {
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public User(String name, String prodi, String tahunmasuk) {
+        this.name = name;
+        this.prodi = prodi;
+        this.tahunmasuk = tahunmasuk;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getProdi() {
+        return prodi;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setProdi(String prodi) {
+        this.prodi = prodi;
+    }
+
+    public String getTahunmasuk() {
+        return tahunmasuk;
+    }
+
+    public void setTahunmasuk(String tahunmasuk) {
+        this.tahunmasuk = tahunmasuk;
     }
 }

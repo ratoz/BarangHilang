@@ -24,7 +24,14 @@ public class PostData {
     private String typePost = "Found";
     private String idPost="1";
 
-    public PostData() {}
+
+    public PostData(){}
+
+    public PostData(String title, String description,String chronology) {
+        this.title = title;
+        this.description = description;
+        this.chronology = chronology;
+    }
 
     public String getIdPost() {
         return idPost;
