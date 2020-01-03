@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".halamanKehilangan">
 
-    <TextView
-        android:id="@+id/textView2"
+    <RelativeLayout
+        android:id="@+id/lyHeader"
+        android:background="@color/colorPrimaryDark"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Halaman Kehilangan" />
-</LinearLayout>
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvHilang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Info Barang Hilang"
+            android:textSize="@dimen/heading2"
+            android:textStyle="bold"
+            android:textAlignment="textStart"
+            android:layout_marginLeft="@dimen/rapisisi1"
+            android:textColor="@color/colorWhite"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/lyItem"
+        android:layout_below="@id/lyHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12:00"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+        </TextView>
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
