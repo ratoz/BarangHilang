@@ -23,6 +23,34 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/windowSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnTutup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:text="TUTUP"/>
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_weight="5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_success"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
         android:background="@color/colorPrimary"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -165,7 +193,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="16dp"
-                    android:text="20 Januari 2001"/>
+                    android:text="..."/>
 
                 <ImageView
                     android:id="@+id/btnDateFoundLost"
@@ -197,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginHorizontal="16dp"
-                    android:text="14:45 WIB"/>
+                    android:text="..."/>
 
 
                 <ImageView
@@ -225,7 +253,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kategori"/>
+                    />
 
             </LinearLayout>
 

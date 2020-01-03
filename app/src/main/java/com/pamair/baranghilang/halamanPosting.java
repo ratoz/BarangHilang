@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class halamanPosting extends Fragment {
     private EditText edtTitle,edtDescription,edtChronology;
     private Button btnUploadImage;
     private Button btnPost;
+    private Button btnTutup;
     private ImageView imgPreview;
     private RadioGroup rdgPost;
     private RadioButton rdbFound;
@@ -68,7 +70,11 @@ public class halamanPosting extends Fragment {
     private DatePickerDialog.OnDateSetListener date;
     private PostData post;
     private LinearLayout progress;
+    private LinearLayout success;
     FirebaseFirestore db;
+    private boolean dateSet;
+    private boolean timeSet;
+
 
     /*Constructor*/
     public halamanPosting(){
@@ -82,6 +88,7 @@ public class halamanPosting extends Fragment {
         edtChronology = postView.findViewById(R.id.edtChronology);
         btnUploadImage = postView.findViewById(R.id.btnChooseImage);
         btnPost = postView.findViewById(R.id.btnPost);
+        btnTutup = postView.findViewById(R.id.btnTutup);
         imgPreview = postView.findViewById(R.id.imgPreview);
         tvDateFoundLost = postView.findViewById(R.id.tvDateFoundLostToggle);
         tvTimeFoundLost = postView.findViewById(R.id.tvTimeFoundLost);
@@ -91,8 +98,11 @@ public class halamanPosting extends Fragment {
         calendar = postView.findViewById(R.id.tvDateFoundLost);
         clock = postView.findViewById(R.id.tvTimeFoundLost);
         progress = postView.findViewById(R.id.windowProgress);
+        success = postView.findViewById(R.id.windowSuccess);
         post = new PostData();
         db = FirebaseFirestore.getInstance();
+        timeSet = false;
+        dateSet = false;
     }
 
     @Override
@@ -127,16 +137,48 @@ public class halamanPosting extends Fragment {
                 post.setPhoto("image/..."); //Sementara
 
                 final CollectionReference newPost = db.collection("post");
-                progress.setVisibility(View.VISIBLE);
 
-                newPost.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        String idPost = documentReference.getId().toString();
-                        newPost.document(idPost).update("idPost",idPost);
-                        progress.setVisibility(View.GONE);
-                    }
-                });
+                if (TextUtils.isEmpty(edtTitle.getText().toString())){
+                    edtTitle.setError("Judul tidak boleh kosong");
+                    edtTitle.requestFocus();
+                } else if (TextUtils.isEmpty(edtChronology.getText().toString())){
+                    edtChronology.setError("Kronologi tidak boleh kosong");
+                    edtChronology.requestFocus();
+                } else if (TextUtils.isEmpty(edtDescription.getText().toString())){
+                    edtDescription.setError("Deskripsi tidak boleh kosong");
+                    edtDescription.requestFocus();
+                } else if (dateSet==false){
+                    //Toast.makeText(getContext(),"Tanggal Tidak Boleh Kosong",Toast.LENGTH_SHORT).show();
+                    calendar.setError("Tanggal tidak boleh kosong");
+                    calendar.requestFocus();
+                } else if (timeSet==false){
+                    //Toast.makeText(getContext(),"Waktu Tidak Boleh Kosong",Toast.LENGTH_SHORT).show();
+                    clock.setError("Waktu tidak boleh kosong");
+                    clock.requestFocus();
+                }else {
+                    progress.setVisibility(View.VISIBLE);
+                    newPost.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            String idPost = documentReference.getId().toString();
+                            newPost.document(idPost).update("idPost", idPost);
+                            progress.setVisibility(View.GONE);
+                            edtTitle.setText("");
+                            edtDescription.setText("");
+                            edtChronology.setText("");
+                            calendar.setText("...");
+                            clock.setText("...");
+                            success.setVisibility(View.VISIBLE);
+                        }
+                    });
+                }
+            }
+        });
+
+        btnTutup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                success.setVisibility(View.GONE);
             }
         });
     }
@@ -266,6 +308,7 @@ public class halamanPosting extends Fragment {
             }
             post.setDateLost(dayOfMonth,monthOfYear,year);
             calendar.setText(dayOfMonth + " " + month + " " + year);
+            dateSet = true;
         }
     };
 
@@ -277,6 +320,7 @@ public class halamanPosting extends Fragment {
 
             post.setTimeLost(hourOfDay,minuteOfHour);
             tvTimeFoundLost.setText(hour+":"+minute);
+            timeSet = true;
         }
     };
 }
