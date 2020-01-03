@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -66,6 +67,7 @@ public class halamanPosting extends Fragment {
     private Calendar myCalendar;
     private DatePickerDialog.OnDateSetListener date;
     private PostData post;
+    private LinearLayout progress;
     FirebaseFirestore db;
 
     /*Constructor*/
@@ -88,6 +90,7 @@ public class halamanPosting extends Fragment {
         btnClock = postView.findViewById(R.id.btnTimeFoundLost);
         calendar = postView.findViewById(R.id.tvDateFoundLost);
         clock = postView.findViewById(R.id.tvTimeFoundLost);
+        progress = postView.findViewById(R.id.windowProgress);
         post = new PostData();
         db = FirebaseFirestore.getInstance();
     }
@@ -123,12 +126,15 @@ public class halamanPosting extends Fragment {
                 post.setChronology(edtChronology.getText().toString());
                 post.setPhoto("image/..."); //Sementara
 
-                CollectionReference newPost = db.collection("post");
+                final CollectionReference newPost = db.collection("post");
+                progress.setVisibility(View.VISIBLE);
 
                 newPost.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Toast toast = Toast.makeText(getActivity(),"Post Created",Toast.LENGTH_SHORT);
+                        String idPost = documentReference.getId().toString();
+                        newPost.document(idPost).update("idPost",idPost);
+                        progress.setVisibility(View.GONE);
                     }
                 });
             }
