@@ -10,8 +10,37 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class halamanKehilangan extends Fragment {
-    public halamanKehilangan(){
 
+    private String user;
+    private String deskripsi;
+    private int time;
+    private int date;
+
+    public halamanKehilangan(){
+        //empty constructor
+    }
+
+    public halamanKehilangan(String user, String deskripsi, int time, int date){
+        this.user=user;
+        this.deskripsi=deskripsi;
+        this.time=time;
+        this.date=date;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public int getDate() {
+        return date;
     }
 
     @Override
