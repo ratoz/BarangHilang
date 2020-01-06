@@ -22,6 +22,7 @@ public class PostData {
     private int timeMinutePost;
     private String dateTimePost;
     private String typePost = "Found";
+    private String idPost="1";
 
 
     public PostData(){}
@@ -32,7 +33,15 @@ public class PostData {
         this.chronology = chronology;
     }
 
-    public void setDatePost(int day,int month, int year){
+    public String getIdPost() {
+        return idPost;
+    }
+
+    public void setIdPost(String idPost) {
+        this.idPost = idPost;
+    }
+
+    public void setDatePost(int day, int month, int year){
         this.dateDayPost=day;
         this.dateMonthPost=month;
         this.dateYearPost=year;
