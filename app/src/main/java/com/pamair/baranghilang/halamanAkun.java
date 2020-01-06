@@ -1,39 +1,32 @@
 package com.pamair.baranghilang;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.pamair.baranghilang.recyclerview.recyclerViewAdapter;
+import com.google.firebase.firestore.Query;
 
-import java.util.ArrayList;
 
 import Model.PostData;
+import Model.PostDataHolder;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class halamanAkun extends Fragment {
 
-    final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private recyclerViewAdapter adapter;
-    private ArrayList<PostData> postDataList;
+    
+    RecyclerView recyclerView;
+    FirestoreRecyclerAdapter adapter;
 
     public halamanAkun(){
 
@@ -44,7 +37,7 @@ public class halamanAkun extends Fragment {
                              Bundle savedInstanceState) {
         View view_fragment = inflater.inflate(R.layout.halaman_akun, container, false);
 
-        final Button button = view_fragment.findViewById(R.id.menupopup);
+        final ImageButton button = view_fragment.findViewById(R.id.menupopup);
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -61,45 +54,65 @@ public class halamanAkun extends Fragment {
                         return true;
                     }
                 });
-
                 popup.show();//showing popup menu
             }
         });
 
 
-        RecyclerView recyclerView = view_fragment.findViewById(R.id.postandamain);
-        adapter = new recyclerViewAdapter(postDataList);
+        recyclerView = view_fragment.findViewById(R.id.postandamain);
+        addData(recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
-        recyclerView.setAdapter(adapter);
-        addData();
 
         // Inflate the layout for this fragment
         return view_fragment;
+    }
 
+    private void addData(RecyclerView recyclerView){
+        String userid = getArguments().getString("user");
+        Query query = FirebaseFirestore.getInstance()
+                .collection("post").whereEqualTo("idUser",userid)
+                .limit(50);
+
+        FirestoreRecyclerOptions<PostData> options = new FirestoreRecyclerOptions.Builder<PostData>()
+                .setQuery(query, PostData.class)
+                .build();
+
+        adapter = new FirestoreRecyclerAdapter<PostData, PostDataHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull PostDataHolder holder, int position, @NonNull PostData model) {
+                holder.txtNama.setText(model.getTitle());
+                holder.txtKrono.setText(model.getChronology());
+            }
+
+            @NonNull
+            @Override
+            public PostDataHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.recyclerviewpostanda, parent, false);
+                return new PostDataHolder(view);
+            }
+
+        };
+
+        recyclerView.setAdapter(adapter);
 
     }
 
-    void addData(){
-        db.collection("post").whereEqualTo("idUser","admin").get().
-                addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()){
-                            postDataList = new ArrayList<>();
-                            for (QueryDocumentSnapshot document : task.getResult()){
-                                postDataList.add(new PostData(document.get("title").toString(),
-                                        "",""));
-                                //Log.d(TAG, document.getId() + " => " + document.getData());
-                            }
-                        }
-                        else {
-                            postDataList.add(new PostData(task.getException().toString(),"",""));
-                        }
-                    }
-
-                });
-
+    public void onStart(){
+        super.onStart();
+        adapter.startListening();
     }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+
+
+
 }

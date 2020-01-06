@@ -36,6 +36,7 @@ public class halamanDefault extends AppCompatActivity {
         Bundle fragment = new Bundle();
         fragment.putString("user",bundle.getString("userId"));
         halPosting.setArguments(fragment);
+        halAkun.setArguments(fragment);
         /*------------------------*/
 
         changeFragment(halKehilangan);

@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:id="@+id/rv_postanda"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,23 +12,38 @@
     android:id="@+id/cv_postanda"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/cardview_dark_background"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/cardview_light_background"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <TextView
         android:id="@+id/namapost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="2dp"
         android:gravity="center"
-        android:text="Text"
+        android:text="Judul"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="@dimen/heading2"
         android:textStyle="bold" />
+    <TextView
+        android:id="@+id/kronologipost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:gravity="center"
+        android:text="Kronologi"
+        android:textColor="#000000"
+        android:textSize="@dimen/text"
+        />
+    </LinearLayout>
 </androidx.cardview.widget.CardView>
 
 
