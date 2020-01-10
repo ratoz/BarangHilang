@@ -77,7 +77,6 @@ public class halamanAkun extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.settingakun:
-
                                 return true;
                             case R.id.logout:
                                 getActivity().finish();
