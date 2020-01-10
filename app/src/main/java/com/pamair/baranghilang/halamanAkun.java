@@ -77,6 +77,9 @@ public class halamanAkun extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.settingakun:
+                            Intent intent = new Intent(getActivity(), HalamanEditAkun.class);
+                                intent.putExtra("userId",userid);
+                                startActivity(intent);
                                 return true;
                             case R.id.logout:
                                 getActivity().finish();
