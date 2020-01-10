@@ -8,6 +8,9 @@
     <!-- Button -->
     <string name="txt_loginbutton">Login</string>
     <string name="txt_sendbutton">Send</string>
+    <string name="txt_editbutton">Edit</string>
+    <string name="txt_hapusbutton">Hapus</string>
+    <string name="txt_batalbutton">Batal</string>
 
     <!-- Textbox -->
     <string name="txt_boxusername">Username</string>

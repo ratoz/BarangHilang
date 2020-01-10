@@ -27,10 +27,11 @@ public class PostData {
 
     public PostData(){}
 
-    public PostData(String title, String description,String chronology) {
+    public PostData(String title, String description,String chronology, String idPost) {
         this.title = title;
         this.description = description;
         this.chronology = chronology;
+        this.idPost = idPost;
     }
 
     public String getIdPost() {

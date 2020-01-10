@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,20 +35,27 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.pamair.baranghilang.references.DatePickerFragment;
 import com.pamair.baranghilang.references.TimePickerFragment;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 import Model.PostData;
+
+import static android.app.Activity.RESULT_OK;
 
 public class halamanPosting extends Fragment {
 
@@ -55,7 +63,7 @@ public class halamanPosting extends Fragment {
     private View postView;
     private TextView tvDateFoundLost;
     private TextView tvTimeFoundLost;
-    private TextView calendar,clock;
+    private TextView calendar,clock, progressStatus, progressPercent;
     private EditText edtTitle,edtDescription,edtChronology;
     private Button btnUploadImage;
     private Button btnPost;
@@ -74,6 +82,11 @@ public class halamanPosting extends Fragment {
     FirebaseFirestore db;
     private boolean dateSet;
     private boolean timeSet;
+    private final int PICK_IMAGE_REQUEST = 22;
+    private Uri filePath;
+    private String idImage;
+    FirebaseStorage storage;
+    StorageReference storageReference;
 
 
     /*Constructor*/
@@ -99,6 +112,12 @@ public class halamanPosting extends Fragment {
         clock = postView.findViewById(R.id.tvTimeFoundLost);
         progress = postView.findViewById(R.id.windowProgress);
         success = postView.findViewById(R.id.windowSuccess);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+        progressStatus = postView.findViewById(R.id.progressStatus);
+        progressPercent = postView.findViewById(R.id.progressBarText);
+
+
         post = new PostData();
         db = FirebaseFirestore.getInstance();
         timeSet = false;
@@ -123,8 +142,122 @@ public class halamanPosting extends Fragment {
         onSelectedTime();
         getDateTimeNow();
         onPostEntry();
+        onSelectImage();
         //tvDateFoundLost.setText(getArguments().getString("user"));
     }
+
+    @Override
+    public void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data)
+    {
+
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
+
+        if (requestCode == PICK_IMAGE_REQUEST
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() != null) {
+
+            // Get the Uri of data
+            filePath = data.getData();
+            try {
+
+                // Setting image on image view using Bitmap
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(
+                                getContext().getContentResolver(),
+                                filePath);
+                imgPreview.setImageBitmap(bitmap);
+            }
+
+            catch (IOException e) {
+                // Log the exception
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void onSelectImage(){
+        btnUploadImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(
+                        Intent.createChooser(
+                                intent,
+                                "Select Image from here..."),
+                        PICK_IMAGE_REQUEST);
+            }
+        });
+    }
+
+    private void onUploadImage()
+    {
+        if (filePath != null) {
+            idImage = UUID.randomUUID().toString();
+            // Defining the child of storageReference
+            StorageReference ref;
+            if (post.getTypePost().equals("Lost")){
+                ref = storageReference.child("images/lost/" + idImage);
+            }
+            else{
+                ref = storageReference.child("images/found/" + idImage);
+            }
+            Log.w("myAppKon", filePath.toString());
+            // adding listeners on upload
+            // or failure of image
+            ref.putFile(filePath)
+                    .addOnSuccessListener(
+                            new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+                                    progressPercent.setText("100%");
+                                    progress.setVisibility(View.GONE);
+                                    Toast.makeText(getContext(), "Image Uploaded", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e)
+                        {
+                            // Error, Image not uploaded
+                            Toast.makeText(getContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT)
+                                    .show();
+                            progress.setVisibility(View.GONE);
+                        }
+                    })
+                    .addOnProgressListener(
+                            new OnProgressListener<UploadTask.TaskSnapshot>() {
+
+                                // Progress Listener for loading
+                                // percentage on the dialog box
+                                @Override
+                                public void onProgress(
+                                        UploadTask.TaskSnapshot taskSnapshot)
+                                {
+                                    double progress
+                                            = (100.0
+                                            * taskSnapshot.getBytesTransferred()
+                                            / taskSnapshot.getTotalByteCount());
+                                    progressPercent.setText((int)progress + "%");
+                                }
+                            });
+
+        }
+        else{
+
+        }
+    }
+
+
+
 
     private void onPostEntry() {
         btnPost.setOnClickListener(new View.OnClickListener() {
@@ -134,7 +267,7 @@ public class halamanPosting extends Fragment {
                 post.setTitle(edtTitle.getText().toString());
                 post.setDescription(edtDescription.getText().toString());
                 post.setChronology(edtChronology.getText().toString());
-                post.setPhoto("image/..."); //Sementara
+                post.setPhoto("undefined"); //Sementara
 
                 final CollectionReference newPost = db.collection("post");
 
@@ -157,12 +290,27 @@ public class halamanPosting extends Fragment {
                     clock.requestFocus();
                 }else {
                     progress.setVisibility(View.VISIBLE);
+                    progressStatus.setText("Status: Membuat Post ID");
+                    progressPercent.setText("0%");
                     newPost.add(post).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
-                            String idPost = documentReference.getId().toString();
+                            progressPercent.setText("100%");
+                            String idPost = documentReference.getId();
                             newPost.document(idPost).update("idPost", idPost);
-                            progress.setVisibility(View.GONE);
+
+                            progressStatus.setText("Status: Mengupload Gambar");
+                            progressPercent.setText("0%");
+                            if(filePath != null) {
+                                    onUploadImage();
+                                newPost.document(idPost).update("photo",idImage);
+
+
+                            }
+                            else {
+                                progress.setVisibility(View.GONE);
+                            }
+                            imgPreview.setImageResource(R.drawable.ic_preview);
                             edtTitle.setText("");
                             edtDescription.setText("");
                             edtChronology.setText("");
