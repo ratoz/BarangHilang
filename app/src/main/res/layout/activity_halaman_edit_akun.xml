@@ -31,14 +31,14 @@
                 android:textColor="@color/colorWhite"/>
 
             <ImageButton
-                android:id="@+id/menupopup"
-                android:layout_width="59dp"
-                android:layout_height="37dp"
+                android:id="@+id/backtoakun"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
 
                 android:layout_marginRight="5dp"
                 android:background="@drawable/bg_imgbtn"
-                android:src="@drawable/ic_optionmenu"
+                android:src="@drawable/ic_cross"
 
                 />
         </RelativeLayout>
@@ -114,26 +114,28 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nickname"
+                android:text=""
                 android:textColor="@color/colorBlack"
+                android:hint="Nickname"
                 />
             <EditText
                 android:id="@+id/txt_nohp"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nomer HP"
+                android:text=""
                 android:textColor="@color/colorBlack"
+                android:hint="No. Hp"
                 />
             <EditText
                 android:id="@+id/txt_email"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text=""
                 android:textColor="@color/colorBlack"
+                android:hint="Email"
                 />
-
             <Button
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
@@ -141,8 +143,25 @@
                 android:background="@color/colorPrimaryDark"
                 android:text="SAVE"
                 android:textColor="#FFFFFF"
-                android:onClick="SAVE"/>
+                />
         </LinearLayout>
     </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/windowprogress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlackTrans"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

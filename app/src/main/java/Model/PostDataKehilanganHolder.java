@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PostDataHolder extends RecyclerView.ViewHolder {
+public class PostDataKehilanganHolder extends RecyclerView.ViewHolder {
 
     public CardView cardView;
     public LinearLayout backgroundimg;
@@ -24,14 +24,17 @@ public class PostDataHolder extends RecyclerView.ViewHolder {
     public TextView txtIdPost;
     public ImageView imgBarang;
 
-    public PostDataHolder(@NonNull View itemView) {
+    public PostDataKehilanganHolder(@NonNull View itemView) {
         super(itemView);
-        backgroundimg = itemView.findViewById(R.id.backgroundimg);
-        txtNama = itemView.findViewById(R.id.namapost);
-        txtTypePost = itemView.findViewById(R.id.typepost);
-        txtIdPost = itemView.findViewById(R.id.idpost);
-        imgBarang = itemView.findViewById(R.id.img_barang);
-        cardView = itemView.findViewById(R.id.cv_postanda);
+
+            imgBarang = itemView.findViewById(R.id.pk_img_post);
+            txtNama = itemView.findViewById(R.id.pk_tvTitle);
+            txtUser = itemView.findViewById(R.id.pk_tvUser);
+            txtDate = itemView.findViewById(R.id.pk_tvDate);
+            txtClock = itemView.findViewById(R.id.pk_tvTime);
+            txtDesc = itemView.findViewById(R.id.pk_tvDesc);
+            txtIdPost= itemView.findViewById(R.id.pk_idpost);
+
 
 
     }

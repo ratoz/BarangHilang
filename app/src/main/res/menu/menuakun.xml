@@ -5,6 +5,9 @@
             android:id="@+id/settingakun"
             android:title="Pengaturan Akun" />
         <item
+            android:id="@+id/history"
+            android:title="Jejak Kehilangan" />
+        <item
             android:id="@+id/logout"
             android:title="Keluar dari Akun"/>
 

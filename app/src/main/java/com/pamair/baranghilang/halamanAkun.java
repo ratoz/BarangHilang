@@ -6,6 +6,7 @@ package com.pamair.baranghilang;
  * --------------------**/
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -160,9 +161,13 @@ public class halamanAkun extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.settingakun:
-                                return true;
+                                Intent i = new Intent(getActivity(),HalamanEditAkun.class);
+                                i.putExtra("iduser", userid);
+                                startActivity(i);
                             case R.id.logout:
                                 getActivity().finish();
+                                return true;
+                            case R.id.history:
                                 return true;
                             default:
                                 return true;

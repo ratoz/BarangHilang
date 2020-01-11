@@ -29,14 +29,14 @@
                 android:textColor="@color/colorWhite"/>
 
             <ImageButton
-                android:id="@+id/menupopup"
-                android:layout_width="59dp"
-                android:layout_height="37dp"
+                android:id="@+id/backtoakun"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
 
                 android:layout_marginRight="5dp"
                 android:background="@drawable/bg_imgbtn"
-                android:src="@drawable/ic_optionmenu"
+                android:src="@drawable/ic_cross"
 
                 />
         </RelativeLayout>
@@ -88,7 +88,8 @@
                 android:id="@+id/txt_namaakun"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama"
+                android:text=""
+
                 android:textColor="@color/colorBlack"
                 />
             <TextView
@@ -96,7 +97,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Prodi"
+                android:text=""
                 android:textColor="@color/colorBlack"
                 />
             <TextView
@@ -104,7 +105,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Tahun Masuk"
+                android:text=""
                 android:textColor="@color/colorBlack"
                 />
             <EditText
@@ -112,24 +113,27 @@
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nickname"
+                android:text=""
                 android:textColor="@color/colorBlack"
+                android:hint="Nickname"
                 />
             <EditText
                 android:id="@+id/txt_nohp"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nomer HP"
+                android:text=""
                 android:textColor="@color/colorBlack"
+                android:hint="No. Hp"
                 />
             <EditText
                 android:id="@+id/txt_email"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email"
+                android:text=""
                 android:textColor="@color/colorBlack"
+                android:hint="Email"
                 />
 
             <Button

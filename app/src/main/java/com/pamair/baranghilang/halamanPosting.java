@@ -87,6 +87,7 @@ public class halamanPosting extends Fragment {
     private String idImage;
     FirebaseStorage storage;
     StorageReference storageReference;
+    private String type;
 
 
     /*Constructor*/
@@ -268,6 +269,12 @@ public class halamanPosting extends Fragment {
                 post.setDescription(edtDescription.getText().toString());
                 post.setChronology(edtChronology.getText().toString());
                 post.setPhoto("undefined"); //Sementara
+                if (type.equals("Lost")){
+                    post.setTypePost("Lost");
+                }
+                else {
+                    post.setTypePost("Found");
+                }
 
                 final CollectionReference newPost = db.collection("post");
 
@@ -401,10 +408,12 @@ public class halamanPosting extends Fragment {
                     case R.id.rdbFound:
                         tvDateFoundLost.setText("Tanggal Ditemukan");
                         post.setTypePost("Found");
+                        type = "Found";
                         break;
                     case R.id.rdbLost:
                         tvDateFoundLost.setText("Tanggal Kehilangan");
                         post.setTypePost("Lost");
+                        type = "Lost";
                         break;
                 }
             }
