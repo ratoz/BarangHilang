@@ -95,8 +95,8 @@ public class halamanJejak extends AppCompatActivity {
                     Kronologi = Kronologi.substring(0,40)+"...";
                 holder.txtNama.setText(model.getTitle());
                 holder.txtTypePost.setText("Tipe Kasus: " + model.getTypePost());
-                holder.txtDesc.setText("Deskripsi"+desc);
-                holder.txtKronologi.setText("Kronologi"+Kronologi);
+                holder.txtDesc.setText("Deskripsi: "+desc);
+                holder.txtKronologi.setText("Kronologi: "+Kronologi);
                 holder.txtSelesaipada.setText(model.getTimestampUpdatePost());
                 holder.txtIdPost.setText(model.getIdPost());
                 holder.cardView.setOnClickListener(new View.OnClickListener() {
