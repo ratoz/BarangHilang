@@ -175,24 +175,24 @@ public class HalamanEditAkun extends AppCompatActivity {
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Bundle bundle = new Bundle();
+                /*Bundle bundle = new Bundle();
                 bundle.putString("userId", userid);
                 bundle.putString("state", "backakun");
                 Intent i = new Intent(HalamanEditAkun.this, halamanDefault.class);
                 i.putExtras(bundle);
-                startActivity(i);
+                startActivity(i);*/
                 finish();
             }
         };
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
+                /*Bundle bundle = new Bundle();
                 bundle.putString("userId", userid);
                 bundle.putString("state", "backakun");
                 Intent i = new Intent(HalamanEditAkun.this, halamanDefault.class);
                 i.putExtras(bundle);
-                startActivity(i);
+                startActivity(i)*/
 
                 finish();
             }

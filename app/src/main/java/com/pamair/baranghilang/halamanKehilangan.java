@@ -258,7 +258,7 @@ public class halamanKehilangan extends Fragment {
 
     }
 
-    public void popupRecycleView(View view, final PostDataKehilanganHolder holder, PostData model) {
+    public void popupRecycleView(View view, final PostDataKehilanganHolder holder, final PostData model) {
         LayoutInflater inflater = (LayoutInflater) view.getContext().getSystemService(view.getContext().LAYOUT_INFLATER_SERVICE);
         final View popupView = inflater.inflate(R.layout.menupost, null);
 
@@ -283,6 +283,7 @@ public class halamanKehilangan extends Fragment {
         final TextView tglpost = popupView.findViewById(R.id.p_tglpost);
         final TextView name = popupView.findViewById(R.id.p_nama);
         final RelativeLayout progressbar = popupView.findViewById(R.id.p_progressbar);
+        final RelativeLayout kontaklayout = popupView.findViewById(R.id.p_layoutkontak);
         final TextView nohp = popupView.findViewById(R.id.p_nohp);
         final TextView email = popupView.findViewById(R.id.p_gmail);
         final ScrollView viewpost = popupView.findViewById(R.id.p_viewpost);
@@ -295,13 +296,16 @@ public class halamanKehilangan extends Fragment {
 
 
         judulpost.setText("Post : " + holder.txtNama.getText());
-
         //------------------------------------------------------
 
         db.collection("post").document(holder.txtIdPost.getText().toString()).get()
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot d) {
+                if (!userid.equals("admin")){
+                    if (userid.equals(model.getIdUser()))
+                        kontaklayout.setVisibility(View.GONE);
+                }
                 progressbar.setVisibility(View.GONE);
                 viewpost.setVisibility(View.VISIBLE);
                 PostData post = d.toObject(PostData.class);

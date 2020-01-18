@@ -168,21 +168,25 @@
                     android:layout_height="2dp"
                     android:background="@color/colorPrimary" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Kontak: "
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/text"
-                    android:textStyle="bold"/>
+
 
                 <RelativeLayout
+                    android:id="@+id/p_layoutkontak"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
                     >
+                    <TextView
+                        android:id="@+id/txtkontak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kontak: "
+                        android:textColor="@color/colorBlack"
+                        android:textSize="@dimen/text"
+                        android:textStyle="bold"/>
 
                     <ImageButton
+                        android:layout_below="@id/txtkontak"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:id="@+id/p_btnwa"
                         android:layout_width="72dp"
@@ -192,6 +196,7 @@
                         android:layout_marginRight="@dimen/rapisisi1"/>
 
                     <ImageButton
+                        android:layout_below="@id/txtkontak"
                         style="@style/Widget.AppCompat.Button.Borderless"
                         android:id="@+id/p_btngmail"
                         android:layout_width="72dp"

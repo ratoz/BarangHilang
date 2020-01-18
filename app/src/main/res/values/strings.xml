@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Barang Hilang</string>
+    <string name="app_name">Lo&amp;Fo Amikom</string>
 
     <!-- Text -->
     <string name="txt_jdldepan1a">Masuk</string>
@@ -13,7 +13,7 @@
     <string name="txt_batalbutton">Batal</string>
 
     <!-- Textbox -->
-    <string name="txt_boxusername">Username</string>
+    <string name="txt_boxusername">NIM</string>
     <string name="txt_boxpassword">Password</string>
     <string name="txt_warninglogin1">Username or Password not correct!</string>
     <string name="info_kasusselesai">Tombol Kasus Selesai digunakan ketika barang anda telah ditemukan atau orang yang mempunyai barang tersebut ditemukan.</string>
