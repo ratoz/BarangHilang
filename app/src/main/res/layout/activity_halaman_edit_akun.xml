@@ -58,6 +58,37 @@
                 android:src="@drawable/ic_launcher_background">
 
             </de.hdodenhof.circleimageview.CircleImageView>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/rapiatas1"
+                android:layout_marginLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txt_namaakun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nama"
+                    android:textColor="@color/colorBlack"
+                    />
+                <TextView
+                    android:id="@+id/txt_prodiakun"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Prodi"
+                    android:textColor="@color/colorBlack"
+                    />
+                <TextView
+                    android:id="@+id/txt_tahunmasuk"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tahun Masuk"
+                    android:textColor="@color/colorBlack"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -86,29 +117,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
-            <TextView
-                android:id="@+id/txt_namaakun"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nama"
-                android:textColor="@color/colorBlack"
-                />
-            <TextView
-                android:id="@+id/txt_prodiakun"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Prodi"
-                android:textColor="@color/colorBlack"
-                />
-            <TextView
-                android:id="@+id/txt_tahunmasuk"
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tahun Masuk"
-                android:textColor="@color/colorBlack"
-                />
+
             <EditText
                 android:id="@+id/txt_nickname"
                 android:layout_marginTop="5dp"
@@ -118,15 +127,38 @@
                 android:textColor="@color/colorBlack"
                 android:hint="Nickname"
                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+62"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/heading2"/>
             <EditText
                 android:id="@+id/txt_nohp"
                 android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:text=""
+                android:inputType="numberDecimal"
+                android:maxLength="12"
                 android:textColor="@color/colorBlack"
                 android:hint="No. Hp"
                 />
+                <ImageButton
+                    android:id="@+id/contact"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_contactdark"
+                    />
+            </LinearLayout>
             <EditText
                 android:id="@+id/txt_email"
                 android:layout_marginTop="5dp"
@@ -148,7 +180,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/windowprogress"
+        android:id="@+id/ProgressWindow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBlackTrans"

@@ -1,62 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    >
-    <RelativeLayout
+    tools:context=".halamanKehilangan">
+
+    <LinearLayout
+        android:id="@+id/layoutnav"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post Ketemu"
+            android:textSize="@dimen/heading2"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorWhite"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_below="@id/layoutnav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:id="@+id/layoutnav"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="vertical"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            >
-            <TextView
-                android:layout_marginTop="5dp"
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:nestedScrollingEnabled="false"
+                android:id="@+id/postketemu"
+
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Post Kehilangan"
-                android:textSize="@dimen/heading2"
-                android:textStyle="bold"
+                android:layout_marginTop="@dimen/rapiatas1"/>
+
+            <TextView
+                android:layout_below="@id/postketemu"
+                android:id="@+id/txt_loadingpost1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:layout_marginLeft="10dp"
-                android:textColor="@color/colorWhite"/>
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:nestedScrollingEnabled="false"
-            android:id="@+id/postketemu"
-            android:layout_below="@id/layoutnav"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/rapiatas1"/>
-
-        <TextView
-            android:layout_below="@id/postketemu"
-            android:id="@+id/txt_loadingpost1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:visibility="visible"
-            android:textSize="@dimen/text"
-            android:textColor="@color/colorBlack"
-            android:text="Menunggu Post..."/>
-        <TextView
-            android:layout_below="@id/txt_loadingpost1"
-            android:id="@+id/txt_loadingpost2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:visibility="visible"
-            android:textSize="@dimen/text"
-            android:textColor="@color/colorBlack"
-            android:text="Pastikan anda tidak offline!"/>
-    </RelativeLayout>
-
-</ScrollView>
+                android:visibility="visible"
+                android:textSize="@dimen/text"
+                android:textColor="@color/colorBlack"
+                android:text="Menunggu Post..."/>
+            <TextView
+                android:layout_below="@id/txt_loadingpost1"
+                android:id="@+id/txt_loadingpost2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:visibility="visible"
+                android:textSize="@dimen/text"
+                android:textColor="@color/colorBlack"
+                android:text="Pastikan anda tidak offline!"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -30,17 +30,23 @@ public class halamanDefault extends AppCompatActivity {
         halAkun = new halamanAkun();
         halKehilangan = new halamanKehilangan();
         botNav = findViewById(R.id.bnvMain);
-
+        String state;
         /*Get userId From Login*/
         Bundle bundle = getIntent().getExtras();
         Bundle fragment = new Bundle();
         fragment.putString("user",bundle.getString("userId"));
+        state = bundle.getString("state");
         halPosting.setArguments(fragment);
         halAkun.setArguments(fragment);
         halKehilangan.setArguments(fragment);
         halKetemu.setArguments(fragment);
         /*------------------------*/
 
+        if(state.equals("backakun")){
+            botNav.setSelectedItemId(R.id.AkunFrag);
+            changeFragment(halAkun);
+        }
+        else
         changeFragment(halKehilangan);
 
         botNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

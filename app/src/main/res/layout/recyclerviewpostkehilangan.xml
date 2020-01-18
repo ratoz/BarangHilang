@@ -11,6 +11,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:clickable="true"
+        android:id="@+id/pk_cardview"
         android:foreground="?android:attr/selectableItemBackground">
 
         <RelativeLayout
@@ -23,6 +24,18 @@
                 android:id="@+id/pk_img_post"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"/>
+            <TextView
+                android:id="@+id/pk_terakhirPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terakhir Update:"
+                android:textSize="@dimen/text"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:layout_toStartOf="@+id/pk_tvTime"
+                android:layout_alignParentStart="true"
+                android:layout_below="@id/pk_img_post"
+                android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"/>
 
             <TextView
                 android:id="@+id/pk_tvUser"
@@ -32,8 +45,8 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:layout_toStartOf="@+id/pk_tvTime"
-                android:layout_alignParentStart="true"
-                android:layout_below="@id/pk_img_post"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/pk_terakhirPost"
                 android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
             <TextView
                 android:id="@+id/pk_tvTitle"
@@ -85,7 +98,8 @@
                 android:textSize="@dimen/text"
                 android:text="idpost"
                 android:layout_below="@+id/pk_tvDesc"
-                android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+                android:visibility="gone"/>
 
         </RelativeLayout>
 

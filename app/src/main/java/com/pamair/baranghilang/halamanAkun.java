@@ -161,13 +161,20 @@ public class halamanAkun extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.settingakun:
-                                Intent i = new Intent(getActivity(),HalamanEditAkun.class);
+                                //Toast.makeText(halamanAkun.this.getContext(), halamanAkun.this.getActivity().toString(), Toast.LENGTH_LONG).show();
+                                Intent i = new Intent(halamanAkun.this.getContext(),HalamanEditAkun.class);
                                 i.putExtra("iduser", userid);
                                 startActivity(i);
+                                return true;
                             case R.id.logout:
-                                getActivity().finish();
+                                Intent t = new Intent(halamanAkun.this.getContext(),MainActivity.class);
+                                startActivity(t);
+                                halamanAkun.this.getActivity().finish();
                                 return true;
                             case R.id.history:
+                                Intent e = new Intent(halamanAkun.this.getContext(),halamanJejak.class);
+                                e.putExtra("iduser", userid);
+                                startActivity(e);
                                 return true;
                             default:
                                 return true;
@@ -208,10 +215,10 @@ public class halamanAkun extends Fragment {
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //As an example, display the message
-                Toast.makeText(v.getContext(), "Wow, popup action button", Toast.LENGTH_SHORT).show();
-
+                popupWindow.dismiss();
+                Intent i = new Intent(getActivity(),halamanEditPost.class);
+                i.putExtra("idPost", holder.txtIdPost.getText().toString());
+                startActivity(i);
             }
         });
 
@@ -233,8 +240,6 @@ public class halamanAkun extends Fragment {
                                 Toast.makeText(v.getContext(), "Hapus Post Gagal. Pastikan anda online!", Toast.LENGTH_SHORT).show();
                             }
                         });
-                //As an example, display the message
-                Toast.makeText(v.getContext(), "Wow, popup action button", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -265,8 +270,8 @@ public class halamanAkun extends Fragment {
     // --------------Fungsi Adapter Recycle View------------------
     private void addData(RecyclerView recyclerView){
         Query query = FirebaseFirestore.getInstance()
-                .collection("post").whereEqualTo("idUser",userid)
-                .limit(50);
+                .collection("post").orderBy("timestampUpdatePost", Query.Direction.DESCENDING).whereEqualTo("idUser",userid).whereEqualTo("acquire",false)
+                ;
 
         FirestoreRecyclerOptions<PostData> options = new FirestoreRecyclerOptions.Builder<PostData>()
                 .setQuery(query, PostData.class)
@@ -287,14 +292,12 @@ public class halamanAkun extends Fragment {
                         else
                             ref = storageReference.child("images/found/" + model.getPhoto());
 
-                        ;
-
-                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                     ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 // Local temp file has been created
-                                Glide.with(getContext()).load(uri).into(holder.imgBarang);
-
+                                Log.w("myAppKon", holder.itemView.getContext().toString());
+                                Glide.with(holder.itemView.getContext()).load(uri).into(holder.imgBarang);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override

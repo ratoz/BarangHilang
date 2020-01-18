@@ -74,7 +74,7 @@
             android:text="idpost"
             android:textColor="#311124"
             android:textSize="@dimen/text"
-            android:visibility="visible"
+            android:visibility="gone"
             />
     </LinearLayout>
     </LinearLayout>

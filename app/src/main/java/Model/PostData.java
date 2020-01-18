@@ -2,9 +2,14 @@ package Model;
 
 import android.graphics.Bitmap;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.model.value.TimestampValue;
+
 import java.util.Date;
 
 public class PostData {
+    private Boolean acquire;
+    private String timestampUpdatePost;
     private String idUser;
     private String title;
     private String description;
@@ -160,4 +165,19 @@ public class PostData {
         this.typePost = typePost;
     }
 
+    public Boolean getAcquire() {
+        return acquire;
+    }
+
+    public void setAcquire(Boolean acquire) {
+        this.acquire = acquire;
+    }
+
+    public String getTimestampUpdatePost() {
+        return timestampUpdatePost;
+    }
+
+    public void setTimestampUpdatePost(String timestampUpdatePost) {
+        this.timestampUpdatePost = timestampUpdatePost;
+    }
 }

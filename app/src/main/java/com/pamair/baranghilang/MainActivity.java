@@ -83,10 +83,11 @@ public class MainActivity extends AppCompatActivity {
                                     DissapearProgress(login,windowprogress);
                                     Bundle bundle = new Bundle();
                                     bundle.putString("userId",username.getText().toString());
+                                    bundle.putString("state","init");
                                     Intent dashboard = new Intent(MainActivity.this, halamanDefault.class);
                                     dashboard.putExtras(bundle);
                                     startActivity(dashboard);
-
+                                    finish();
                                 }
                                 else{
                                     DissapearProgress(login,windowprogress);

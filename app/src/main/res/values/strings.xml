@@ -16,4 +16,5 @@
     <string name="txt_boxusername">Username</string>
     <string name="txt_boxpassword">Password</string>
     <string name="txt_warninglogin1">Username or Password not correct!</string>
+    <string name="info_kasusselesai">Tombol Kasus Selesai digunakan ketika barang anda telah ditemukan atau orang yang mempunyai barang tersebut ditemukan.</string>
 </resources>

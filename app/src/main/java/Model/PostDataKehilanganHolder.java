@@ -23,10 +23,11 @@ public class PostDataKehilanganHolder extends RecyclerView.ViewHolder {
     public TextView txtTypePost;
     public TextView txtIdPost;
     public ImageView imgBarang;
-
+    public TextView timepost;
     public PostDataKehilanganHolder(@NonNull View itemView) {
         super(itemView);
-
+        timepost = itemView.findViewById(R.id.pk_terakhirPost);
+            cardView =itemView.findViewById(R.id.pk_cardview);
             imgBarang = itemView.findViewById(R.id.pk_img_post);
             txtNama = itemView.findViewById(R.id.pk_tvTitle);
             txtUser = itemView.findViewById(R.id.pk_tvUser);

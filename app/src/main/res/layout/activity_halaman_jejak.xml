@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".halamanJejak">
+    <RelativeLayout
+        android:id="@+id/layoutnav"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimaryDark"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Jejak Barang"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/heading2"
+            android:textStyle="bold" />
+        <ImageButton
+            android:id="@+id/ep_btnBack"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:src="@drawable/ic_cross"/>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/layoutnav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/postJejak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+            android:layout_below="@id/postkehilangan"
+            android:id="@+id/txt_loadingpost1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:visibility="visible"
+            android:textSize="@dimen/text"
+            android:textColor="@color/colorBlack"
+            android:text="Menunggu Post..."/>
+            <TextView
+                android:layout_below="@id/txt_loadingpost1"
+                android:id="@+id/txt_loadingpost2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:visibility="visible"
+                android:textSize="@dimen/text"
+                android:textColor="@color/colorBlack"
+                android:text="Pastikan anda tidak offline!"/>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>

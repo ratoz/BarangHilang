@@ -37,9 +37,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.model.value.TimestampValue;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -49,8 +52,10 @@ import com.pamair.baranghilang.references.TimePickerFragment;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 import Model.PostData;
@@ -118,7 +123,7 @@ public class halamanPosting extends Fragment {
         progressStatus = postView.findViewById(R.id.progressStatus);
         progressPercent = postView.findViewById(R.id.progressBarText);
 
-
+        type = "Lost";
         post = new PostData();
         db = FirebaseFirestore.getInstance();
         timeSet = false;
@@ -264,6 +269,11 @@ public class halamanPosting extends Fragment {
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Date date;
+                date = Timestamp.now().toDate();
+                String dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.US).format(date);
+                post.setTimestampUpdatePost(dateFormat);
+                post.setAcquire(false);
                 post.setIdUser(getArguments().getString("user"));
                 post.setTitle(edtTitle.getText().toString());
                 post.setDescription(edtDescription.getText().toString());
